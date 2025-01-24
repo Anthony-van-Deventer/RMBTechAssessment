@@ -46,6 +46,10 @@ public class OrderBook {
         return getOrderMapBasedOnSide(side).get(price);
     }
 
+    public void deleteMultipleOrders(List<Integer> idsToDelete){
+        idsToDelete.forEach(this::deleteOrder);
+    }
+
     private Map<Double, LinkedList<Order>> getOrderMapBasedOnSide(Side side) {
         return side == Side.BUY ? askOrders : sellOrders;
     }
