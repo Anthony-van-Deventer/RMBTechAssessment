@@ -14,11 +14,15 @@ public class MatchingEngine {
         this.orderBook = new OrderBook();
     }
 
+    public MatchingEngine(OrderBook orderBook) {
+        this.orderBook = orderBook;
+    }
+
     public void fillOrder(double price, int quantity, Side side) {
         Side sideToFill = side == Side.BUY ? Side.SELL : Side.BUY;
         List<Integer> idsToRemove = new ArrayList<>();
         List<Order> existingOrders = orderBook.getOrdersByPriceAndSide(price, sideToFill);
-        if (existingOrders.isEmpty()) {
+        if (existingOrders == null) {
             orderBook.addOrder(price, quantity, side);
         } else {
             for (Order orderToCheck : existingOrders) {
@@ -32,6 +36,7 @@ public class MatchingEngine {
             }
             //remove ids
             orderBook.deleteMultipleOrders(idsToRemove);
+            if (quantity>0) orderBook.addOrder(price, quantity, side);
         }
 
     }

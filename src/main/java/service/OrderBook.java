@@ -3,10 +3,7 @@ package service;
 import model.Order;
 import model.Side;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class OrderBook {
 
@@ -43,7 +40,8 @@ public class OrderBook {
     }
 
     public List<Order> getOrdersByPriceAndSide(double price, Side side){
-        return getOrderMapBasedOnSide(side).get(price);
+        List<Order> orderList = getOrderMapBasedOnSide(side).get(price);
+        return orderList != null ? orderList : new ArrayList<>();
     }
 
     public void deleteMultipleOrders(List<Integer> idsToDelete){
