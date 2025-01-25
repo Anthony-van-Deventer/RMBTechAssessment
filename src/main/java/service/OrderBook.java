@@ -44,10 +44,6 @@ public class OrderBook {
         return orderList != null ? orderList : new ArrayList<>();
     }
 
-    public void deleteMultipleOrders(List<Integer> idsToDelete){
-        idsToDelete.forEach(this::deleteOrder);
-    }
-
     private Map<Double, LinkedList<Order>> getOrderMapBasedOnSide(Side side) {
         return side == Side.BUY ? askOrders : sellOrders;
     }

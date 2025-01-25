@@ -4,6 +4,7 @@ import model.Order;
 import model.Side;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class MatchingEngine {
@@ -20,22 +21,22 @@ public class MatchingEngine {
 
     public void fillOrder(double price, int quantity, Side side) {
         Side sideToFill = side == Side.BUY ? Side.SELL : Side.BUY;
-        List<Integer> idsToRemove = new ArrayList<>();
         List<Order> existingOrders = orderBook.getOrdersByPriceAndSide(price, sideToFill);
         if (existingOrders == null) {
             orderBook.addOrder(price, quantity, side);
         } else {
-            for (Order orderToCheck : existingOrders) {
-                if (quantity >= orderToCheck.getQuantity()){
+            Iterator<Order> orderListIterator = existingOrders.iterator();
+            while (orderListIterator.hasNext()){
+                Order orderToCheck = orderListIterator.next();
+                if (quantity >= orderToCheck.getQuantity()) {
                     quantity -= orderToCheck.getQuantity();
-                    idsToRemove.add(orderToCheck.getId());
-                } else {
+                    orderListIterator.remove();
+                }
+                else {
                     int modifiedQty = orderToCheck.getQuantity() - quantity;
                     orderToCheck.setQuantity(modifiedQty);
                 }
             }
-            //remove ids
-            orderBook.deleteMultipleOrders(idsToRemove);
             if (quantity>0) orderBook.addOrder(price, quantity, side);
         }
 
