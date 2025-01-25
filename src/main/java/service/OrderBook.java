@@ -47,4 +47,14 @@ public class OrderBook {
     private Map<Double, LinkedList<Order>> getOrderMapBasedOnSide(Side side) {
         return side == Side.BUY ? askOrders : sellOrders;
     }
+
+    @Override
+    public String toString() {
+        return "OrderBook{" +
+                "askOrders=" + askOrders +
+                ", sellOrders=" + sellOrders +
+                ", orderMap=" + orderMap +
+                ", orderIdCount=" + orderIdCount +
+                '}';
+    }
 }

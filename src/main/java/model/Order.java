@@ -34,4 +34,14 @@ public class Order {
     public Side getSide() {
         return side;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", side=" + side +
+                '}';
+    }
 }

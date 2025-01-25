@@ -58,7 +58,6 @@ class OrderBookTest {
         assertEquals(askList.get(2).getQuantity(), 3);
         assertEquals(askList.get(3).getQuantity(), 4);
         assertEquals(askList.get(4).getQuantity(), 5);
-
     }
 
     @Test
