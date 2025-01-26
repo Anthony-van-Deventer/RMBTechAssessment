@@ -7,8 +7,8 @@ import java.util.*;
 
 public class OrderBook {
 
+    private final Map<Double, LinkedList<Order>> bidOrders = new LinkedHashMap<>();
     private final Map<Double, LinkedList<Order>> askOrders = new LinkedHashMap<>();
-    private final Map<Double, LinkedList<Order>> sellOrders = new LinkedHashMap<>();
     private final Map<Integer, Order> orderMap = new LinkedHashMap<>();
     private int orderIdCount = 0;
 
@@ -45,16 +45,24 @@ public class OrderBook {
     }
 
     private Map<Double, LinkedList<Order>> getOrderMapBasedOnSide(Side side) {
-        return side == Side.BUY ? askOrders : sellOrders;
+        return side == Side.BUY ? bidOrders : askOrders;
     }
 
     @Override
     public String toString() {
         return "OrderBook{" +
-                "askOrders=" + askOrders +
-                ", sellOrders=" + sellOrders +
+                "bidOrders=" + bidOrders +
+                ", askOrders=" + askOrders +
                 ", orderMap=" + orderMap +
                 ", orderIdCount=" + orderIdCount +
                 '}';
+    }
+
+    public Map<Double, LinkedList<Order>> getBidOrders() {
+        return bidOrders;
+    }
+
+    public Map<Double, LinkedList<Order>> getAskOrders() {
+        return askOrders;
     }
 }

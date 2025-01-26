@@ -1,10 +1,9 @@
-package test;
+package service;
 
 import model.Order;
 import model.Side;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import service.OrderBook;
 
 import java.util.List;
 
@@ -58,6 +57,8 @@ class OrderBookTest {
         assertEquals(askList.get(2).getQuantity(), 3);
         assertEquals(askList.get(3).getQuantity(), 4);
         assertEquals(askList.get(4).getQuantity(), 5);
+        OrderBookPrinter.printOrderBook(orderBook);
+
     }
 
     @Test
