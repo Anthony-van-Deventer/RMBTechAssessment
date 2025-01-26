@@ -41,7 +41,7 @@ public class OrderBook {
 
     public List<Order> getOrdersByPriceAndSide(double price, Side side){
         List<Order> orderList = getOrderMapBasedOnSide(side).get(price);
-        return orderList != null ? orderList : new ArrayList<>();
+        return orderList != null ? orderList : Collections.emptyList();
     }
 
     private Map<Double, LinkedList<Order>> getOrderMapBasedOnSide(Side side) {
