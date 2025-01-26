@@ -135,7 +135,7 @@ The project includes comprehensive **JUnit 5** test cases:
 
 ---
 
-## Program running with example data.
+## Program running with example data. ##
 Using the below example: <br/>
 If a new sell order at price of 9 and amount of 55 arrives to
 exchange, the matching engine should fully fill the bid at 9 with amount of 40 (at Amount 0) and partially fill
