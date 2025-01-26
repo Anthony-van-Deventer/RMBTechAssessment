@@ -48,16 +48,6 @@ public class OrderBook {
         return side == Side.BUY ? bidOrders : askOrders;
     }
 
-    @Override
-    public String toString() {
-        return "OrderBook{" +
-                "bidOrders=" + bidOrders +
-                ", askOrders=" + askOrders +
-                ", orderMap=" + orderMap +
-                ", orderIdCount=" + orderIdCount +
-                '}';
-    }
-
     public Map<Double, LinkedList<Order>> getBidOrders() {
         return bidOrders;
     }
