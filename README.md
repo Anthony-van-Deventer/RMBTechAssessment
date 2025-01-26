@@ -135,7 +135,7 @@ The project includes comprehensive **JUnit 5** test cases:
 
 ---
 
-## Program running with example data. ##
+## Program running with example data. ## <br/>
 Using the below example: <br/>
 If a new sell order at price of 9 and amount of 55 arrives to
 exchange, the matching engine should fully fill the bid at 9 with amount of 40 (at Amount 0) and partially fill
@@ -145,7 +145,7 @@ the correct amount after the partial fill.
 I ran the above example in my program (setup in the Main class) and received the following results: <br/>
 ![img.png](images/executionresults.png)
 <br/>
-One consideration with the above is that I assumed that **filling an order** is different to **modifying an order** hence why a filled order will retain its position in the queue
+One consideration with the above is that I assumed that filling an order is different to modifying an order hence why a filled order will retain its position in the queue
 ---
 
 ## Author
