@@ -18,12 +18,6 @@ class MatchingEngineTest {
     }
 
     @Test
-    void testFillOrderNoMatch() {
-        matchingEngine.fillOrder(10.0, 100, Side.BUY);
-        assertEquals(1, orderBook.getOrdersByPriceAndSide(10.0, Side.BUY).size());
-    }
-
-    @Test
     void whenPartiallyFillingTheOrder_shouldUpdatePartiallyFilledOrderToQuantityMinusFilledQuantity() {
         orderBook.addOrder(10.0, 100, Side.BUY);
         orderBook.addOrder(10.0, 100, Side.SELL);
@@ -46,14 +40,17 @@ class MatchingEngineTest {
     }
 
     @Test
-    void testFillOrderNoExistingOrders() {
-        matchingEngine.fillOrder(15.0, 100, Side.BUY);
-        assertEquals(1, orderBook.getOrdersByPriceAndSide(15.0, Side.BUY).size());
-    }
-
-    @Test
     void whenNoOrdersAtMatchingPrice_shouldAddThatOrder() {
         matchingEngine.fillOrder(1234.01, 100, Side.BUY);
         assertEquals(1, orderBook.getOrdersByPriceAndSide(1234.01, Side.BUY).size());
+    }
+
+    @Test
+    void whenQuantityLeftOverAfterFillingOrder_shouldAddLeftOverAsNewOrderToOrderBook() {
+        orderBook.addOrder(10.0, 100, Side.BUY);
+
+        matchingEngine.fillOrder(10.0, 105, Side.SELL);
+        assertEquals(5, orderBook.getOrdersByPriceAndSide(10.0, Side.SELL).get(0).getQuantity());
+        assertEquals(1, orderBook.getOrdersByPriceAndSide(10.0, Side.SELL).size());
     }
 }
