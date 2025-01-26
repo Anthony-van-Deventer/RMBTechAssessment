@@ -20,5 +20,6 @@ public class OrderBookPrinter {
                 -------------------------------------------------------------
                 """);
         askOrders.forEach((k, v) -> System.out.printf("%-15s : %s%n", k, v));
+        System.out.println();
     }
 }

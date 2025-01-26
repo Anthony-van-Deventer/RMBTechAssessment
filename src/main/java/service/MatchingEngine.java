@@ -10,16 +10,12 @@ public class MatchingEngine {
 
     private final OrderBook orderBook;
 
-    public MatchingEngine() {
-        this.orderBook = new OrderBook();
-    }
-
     public MatchingEngine(OrderBook orderBook) {
         this.orderBook = orderBook;
     }
 
     public void fillOrder(double price, int quantity, Side side) {
-        //looking to fill orders of the order side
+        //looking to fill orders of the opposite side
         Side sideToFill = side == Side.BUY ? Side.SELL : Side.BUY;
         List<Order> existingOrders = orderBook.getOrdersByPriceAndSide(price, sideToFill);
         if (existingOrders.isEmpty()) {
